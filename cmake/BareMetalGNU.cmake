@@ -1,0 +1,54 @@
+cmake_minimum_required(VERSION 3.0.2)
+
+set(CMAKE_SYSTEM_NAME Generic)
+if(NOT CMAKE_SYSTEM_PROCESSOR)
+  set(CMAKE_SYSTEM_PROCESSOR arm)
+endif()
+
+include(CMakeForceCompiler)
+CMAKE_FORCE_C_COMPILER(arm-none-eabi-gcc GNU)
+CMAKE_FORCE_CXX_COMPILER(arm-none-eabi-g++ GNU)
+
+execute_process(
+  COMMAND ${CMAKE_C_COMPILER} -print-file-name=libc.a
+  OUTPUT_VARIABLE CMAKE_INSTALL_PREFIX
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+get_filename_component(
+  CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}" PATH
+)
+get_filename_component(
+  CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}/.." REALPATH
+)
+set(
+  CMAKE_INSTALL_PREFIX  ${CMAKE_INSTALL_PREFIX} CACHE FILEPATH
+  "Install path prefix, prepended onto install directories."
+)
+
+set(CMAKE_FIND_ROOT_PATH ${CMAKE_INSTALL_PREFIX})
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+set(BUILD_SHARED_LIBS OFF)
+
+if(CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m0")
+  set(CPU_FLAGS "-march=armv6-m -mtune=cortex-m0 -mthumb -mfloat-abi=soft")
+elseif(CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m0plus")
+  set(CPU_FLAGS "-march=armv6-m -mtune=cortex-m0plus -mthumb -mfloat-abi=soft")
+elseif(CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m1")
+  set(CPU_FLAGS "-march=armv6-m -mtune=cortex-m1 -mthumb -mfloat-abi=soft")
+elseif(CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m3")
+  set(CPU_FLAGS "-march=armv7-m -mtune=cortex-m3 -mthumb -mfloat-abi=soft")
+elseif(CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m4")
+  set(CPU_FLAGS "-march=armv7e-m -mtune=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16")
+elseif(CMAKE_SYSTEM_PROCESSOR STREQUAL "cortex-m7")
+  set(CPU_FLAGS "-march=armv7e-m -mtune=cortex-m7 -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16")
+endif()
+
+set(CMAKE_C_FLAGS "${CPU_FLAGS} -std=c11 -Wall -Wextra -pipe -ffunction-sections -fdata-sections")
+set(CMAKE_CXX_FLAGS "${CPU_FLAGS} -std=c++14 -Wall -Wextra -pipe -ffunction-sections -fdata-sections")
+set(CMAKE_ASM_FLAGS "${CPU_FLAGS} -x assembler-with-cpp")
+set(CMAKE_EXE_LINKER_FLAGS "${CPU_FLAGS} -Wl,--start-group -lc -lg -lm -lstdc++ -lsupc++ -Wl,--end-group")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--gc-sections -Wl,-Map=sections.map")
+set(CMAKE_STATIC_LINKER_FLAGS "${CPU_FLAGS} -Wl,--gc-sections -Wl,-Map=sections.map")
