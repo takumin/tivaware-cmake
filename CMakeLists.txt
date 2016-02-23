@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 set(CMAKE_SYSTEM_PROCESSOR cortex-m4)
-include(${CMAKE_SOURCE_DIR}/cmake/BareMetalGNU.cmake)
+include(BareMetalGNU)
 project(example)
