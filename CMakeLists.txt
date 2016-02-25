@@ -7,6 +7,6 @@ include(BareMetalGNU)
 project(example)
 
 add_executable(${CMAKE_PROJECT_NAME}.elf main.c startup.c)
-target_link_libraries(${CMAKE_PROJECT_NAME}.elf driverlib grlib)
+target_link_libraries(${CMAKE_PROJECT_NAME}.elf driverlib grlib cfal96x64x16 uartstdio ustdlib)
 add_custom_target(${PROJECT_NAME}.bin ALL ${CMAKE_OBJCOPY} -O binary ${PROJECT_NAME}.elf ${PROJECT_NAME}.bin DEPENDS ${PROJECT_NAME}.elf)
 set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES ${PROJECT_NAME}.bin)
