@@ -31,11 +31,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" CACHE STRING "C Flags.")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" CACHE STRING "CXX Flags.")
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS}" CACHE STRING "Assembler Flags.")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}" CACHE STRING "Execute Linker Flags.")
-
 set(CMAKE_EXE_LINKER_FLAGS_RELEASE "-O3 -flto" CACHE STRING "Flags used by the linker during release builds.")
-set(CMAKE_MODULE_LINKER_FLAGS_RELEASE "-O3 -flto" CACHE STRING "Flags used by the linker during release builds.")
-set(CMAKE_SHARED_LINKER_FLAGS_RELEASE "-O3 -flto" CACHE STRING "Flags used by the linker during release builds.")
-set(CMAKE_STATIC_LINKER_FLAGS_RELEASE "-O3 -flto" CACHE STRING "Flags used by the linker during release builds.")
 
 if(NOT COMPILER_PREFIX)
   set(COMPILER_PREFIX arm-none-eabi-)
