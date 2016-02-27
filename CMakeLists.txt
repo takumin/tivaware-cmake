@@ -6,6 +6,8 @@ include(Tivaware)
 include(BareMetalGNU)
 project(example)
 
+set(CMAKE_BUILD_TYPE RelWithDebInfo)
+
 add_executable(${CMAKE_PROJECT_NAME}.elf
   ${CMAKE_SOURCE_DIR}/source/main.c
   startup.c
