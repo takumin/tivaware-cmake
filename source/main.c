@@ -1,14 +1,19 @@
 #include <stdbool.h>
 #include <stdint.h>
+// inc
 #include "inc/hw_memmap.h"
+// driverlib
 #include "driverlib/fpu.h"
 #include "driverlib/gpio.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/rom.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/uart.h"
+// grlib
 #include "grlib/grlib.h"
+// drivers
 #include "drivers/cfal96x64x16.h"
+// utils
 #include "utils/uartstdio.h"
 
 tContext sContext;
