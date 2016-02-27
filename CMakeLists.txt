@@ -23,7 +23,7 @@ add_custom_target(${PROJECT_NAME}.bin ALL
 )
 set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES ${PROJECT_NAME}.bin)
 
-add_custom_target(flash ALL
+add_custom_target(flash
   COMMAND lm4flash -v ${PROJECT_NAME}.bin
   DEPENDS ${PROJECT_NAME}.bin
 )
