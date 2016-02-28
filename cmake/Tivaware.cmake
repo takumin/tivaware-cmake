@@ -233,4 +233,4 @@ add_library(ustdlib STATIC ${Tivaware_DIR}/utils/ustdlib.c)
 configure_file(${CMAKE_SOURCE_DIR}/cmake/startup.c.in startup.c COPYONLY)
 configure_file(${CMAKE_SOURCE_DIR}/cmake/linker.ld.in linker.ld COPYONLY)
 
-set(LINKER_FLAGS "-T linker.ld --entry ResetISR")
+set(LINKER_FLAGS "-T linker.ld")
