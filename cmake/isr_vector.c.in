@@ -1,0 +1,401 @@
+#include <stdint.h>
+
+//*****************************************************************************
+//
+// Core Interrupt Handler
+//
+//*****************************************************************************
+extern void Default_Handler(void);
+extern void Reset_Handler(void);
+
+void NMI_Handler(void) __attribute__((weak));
+__asm__(".thumb_set NMI_Handler,Default_Handler");
+void HardFault_Handler(void) __attribute__((weak));
+__asm__(".thumb_set HardFault_Handler,Default_Handler");
+void MemFault_Handler(void) __attribute__((weak));
+__asm__(".thumb_set MemFault_Handler,Default_Handler");
+void BusFault_Handler(void) __attribute__((weak));
+__asm__(".thumb_set BusFault_Handler,Default_Handler");
+void UsageFault_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UsageFault_Handler,Default_Handler");
+void SVCall_Handler(void) __attribute__((weak));
+__asm__(".thumb_set SVCall_Handler,Default_Handler");
+void DebugMon_Handler(void) __attribute__((weak));
+__asm__(".thumb_set DebugMon_Handler,Default_Handler");
+void PendSV_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PendSV_Handler,Default_Handler");
+void SysTick_Handler(void) __attribute__((weak));
+__asm__(".thumb_set SysTick_Handler,Default_Handler");
+
+//*****************************************************************************
+//
+// External Interrupt Handler
+//
+//*****************************************************************************
+void GPIOA_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOA_Handler,Default_Handler");
+void GPIOB_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOB_Handler,Default_Handler");
+void GPIOC_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOC_Handler,Default_Handler");
+void GPIOD_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOD_Handler,Default_Handler");
+void GPIOE_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOE_Handler,Default_Handler");
+void UART0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UART0_Handler,Default_Handler");
+void UART1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UART1_Handler,Default_Handler");
+void SSI0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set SSI0_Handler,Default_Handler");
+void I2C0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set I2C0_Handler,Default_Handler");
+void PWM0_Fault_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM0_Fault_Handler,Default_Handler");
+void PWM0_Gen0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM0_Gen0_Handler,Default_Handler");
+void PWM0_Gen1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM0_Gen1_Handler,Default_Handler");
+void PWM0_Gen2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM0_Gen2_Handler,Default_Handler");
+void QEI0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set QEI0_Handler,Default_Handler");
+void ADC0_Seq0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ADC0_Seq0_Handler,Default_Handler");
+void ADC0_Seq1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ADC0_Seq1_Handler,Default_Handler");
+void ADC0_Seq2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ADC0_Seq2_Handler,Default_Handler");
+void ADC0_Seq3_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ADC0_Seq3_Handler,Default_Handler");
+void WDG_Handler(void) __attribute__((weak));
+__asm__(".thumb_set WDG_Handler,Default_Handler");
+void TIM0A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM0A_Handler,Default_Handler");
+void TIM0B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM0B_Handler,Default_Handler");
+void TIM1A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM1A_Handler,Default_Handler");
+void TIM1B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM1B_Handler,Default_Handler");
+void TIM2A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM2A_Handler,Default_Handler");
+void TIM2B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM2B_Handler,Default_Handler");
+void ANG0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ANG0_Handler,Default_Handler");
+void ANG1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ANG1_Handler,Default_Handler");
+void ANG2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ANG2_Handler,Default_Handler");
+void SysCtl_Handler(void) __attribute__((weak));
+__asm__(".thumb_set SysCtl_Handler,Default_Handler");
+void MemCtl_Handler(void) __attribute__((weak));
+__asm__(".thumb_set MemCtl_Handler,Default_Handler");
+void GPIOF_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOF_Handler,Default_Handler");
+void GPIOG_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOG_Handler,Default_Handler");
+void GPIOH_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOH_Handler,Default_Handler");
+void UART2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UART2_Handler,Default_Handler");
+void SSI1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set SSI1_Handler,Default_Handler");
+void TIM3A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM3A_Handler,Default_Handler");
+void TIM3B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM3B_Handler,Default_Handler");
+void I2C1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set I2C1_Handler,Default_Handler");
+void QEI1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set QEI1_Handler,Default_Handler");
+void CAN0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set CAN0_Handler,Default_Handler");
+void CAN1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set CAN1_Handler,Default_Handler");
+void Hibernate_Handler(void) __attribute__((weak));
+__asm__(".thumb_set Hibernate_Handler,Default_Handler");
+void USB_Handler(void) __attribute__((weak));
+__asm__(".thumb_set USB_Handler,Default_Handler");
+void PWM0_Gen3_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM0_Gen3_Handler,Default_Handler");
+void uDMA_Soft_Handler(void) __attribute__((weak));
+__asm__(".thumb_set uDMA_Soft_Handler,Default_Handler");
+void uDMA_Error_Handler(void) __attribute__((weak));
+__asm__(".thumb_set uDMA_Error_Handler,Default_Handler");
+void ADC1_Seq0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ADC1_Seq0_Handler,Default_Handler");
+void ADC1_Seq1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ADC1_Seq1_Handler,Default_Handler");
+void ADC1_Seq2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ADC1_Seq2_Handler,Default_Handler");
+void ADC1_Seq3_Handler(void) __attribute__((weak));
+__asm__(".thumb_set ADC1_Seq3_Handler,Default_Handler");
+void GPIOJ_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOJ_Handler,Default_Handler");
+void GPIOK_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOK_Handler,Default_Handler");
+void GPIOL_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOL_Handler,Default_Handler");
+void SSI2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set SSI2_Handler,Default_Handler");
+void SSI3_Handler(void) __attribute__((weak));
+__asm__(".thumb_set SSI3_Handler,Default_Handler");
+void UART3_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UART3_Handler,Default_Handler");
+void UART4_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UART4_Handler,Default_Handler");
+void UART5_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UART5_Handler,Default_Handler");
+void UART6_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UART6_Handler,Default_Handler");
+void UART7_Handler(void) __attribute__((weak));
+__asm__(".thumb_set UART7_Handler,Default_Handler");
+void I2C2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set I2C2_Handler,Default_Handler");
+void I2C3_Handler(void) __attribute__((weak));
+__asm__(".thumb_set I2C3_Handler,Default_Handler");
+void TIM4A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM4A_Handler,Default_Handler");
+void TIM4B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM4B_Handler,Default_Handler");
+void TIM5A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM5A_Handler,Default_Handler");
+void TIM5B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM5B_Handler,Default_Handler");
+void TIM_WIDE_0A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_0A_Handler,Default_Handler");
+void TIM_WIDE_0B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_0B_Handler,Default_Handler");
+void TIM_WIDE_1A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_1A_Handler,Default_Handler");
+void TIM_WIDE_1B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_1B_Handler,Default_Handler");
+void TIM_WIDE_2A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_2A_Handler,Default_Handler");
+void TIM_WIDE_2B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_2B_Handler,Default_Handler");
+void TIM_WIDE_3A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_3A_Handler,Default_Handler");
+void TIM_WIDE_3B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_3B_Handler,Default_Handler");
+void TIM_WIDE_4A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_4A_Handler,Default_Handler");
+void TIM_WIDE_4B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_4B_Handler,Default_Handler");
+void TIM_WIDE_5A_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_5A_Handler,Default_Handler");
+void TIM_WIDE_5B_Handler(void) __attribute__((weak));
+__asm__(".thumb_set TIM_WIDE_5B_Handler,Default_Handler");
+void SysException_Handler(void) __attribute__((weak));
+__asm__(".thumb_set SysException_Handler,Default_Handler");
+void I2C4_Handler(void) __attribute__((weak));
+__asm__(".thumb_set I2C4_Handler,Default_Handler");
+void I2C5_Handler(void) __attribute__((weak));
+__asm__(".thumb_set I2C5_Handler,Default_Handler");
+void GPIOM_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOM_Handler,Default_Handler");
+void GPION_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPION_Handler,Default_Handler");
+void GPIOP0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOP0_Handler,Default_Handler");
+void GPIOP1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOP1_Handler,Default_Handler");
+void GPIOP2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOP2_Handler,Default_Handler");
+void GPIOP3_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOP3_Handler,Default_Handler");
+void GPIOP4_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOP4_Handler,Default_Handler");
+void GPIOP5_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOP5_Handler,Default_Handler");
+void GPIOP6_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOP6_Handler,Default_Handler");
+void GPIOP7_Handler(void) __attribute__((weak));
+__asm__(".thumb_set GPIOP7_Handler,Default_Handler");
+void PWM1_Gen0_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM1_Gen0_Handler,Default_Handler");
+void PWM1_Gen1_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM1_Gen1_Handler,Default_Handler");
+void PWM1_Gen2_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM1_Gen2_Handler,Default_Handler");
+void PWM1_Gen3_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM1_Gen3_Handler,Default_Handler");
+void PWM1_Fault_Handler(void) __attribute__((weak));
+__asm__(".thumb_set PWM1_Fault_Handler,Default_Handler");
+
+//*****************************************************************************
+//
+// Reserve space for the system stack.
+//
+//*****************************************************************************
+static uintptr_t puiStack[154];
+
+//*****************************************************************************
+//
+// The vector table.  Note that the proper constructs must be placed on this to
+// ensure that it ends up at physical address 0x0000.0000.
+//
+//*****************************************************************************
+__attribute__((section(".isr_vector"))) void (*const g_pfnVectors[])(void) = {
+    // The initial stack pointer
+    (void (*)(void))((uintptr_t)puiStack + sizeof(puiStack)),
+
+    Reset_Handler,       // Reset Handler
+    NMI_Handler,         // NMI Handler
+    HardFault_Handler,   // Hard Fault Handler
+    MemFault_Handler,    // MPU Fault Handler
+    BusFault_Handler,    // Bus Fault Handler
+    UsageFault_Handler,  // Usage Fault Handler
+    0,                   // Reserved
+    0,                   // Reserved
+    0,                   // Reserved
+    0,                   // Reserved
+    SVCall_Handler,      // SVCall Handler
+    DebugMon_Handler,    // Debug Monitor Handler
+    0,                   // Reserved
+    PendSV_Handler,      // PendSV Handler
+    SysTick_Handler,     // SysTick Handler
+
+    ///////////////////////// No. Desc
+    GPIOA_Handler,         // 000 GPIO Port A
+    GPIOB_Handler,         // 001 GPIO Port B
+    GPIOC_Handler,         // 002 GPIO Port C
+    GPIOD_Handler,         // 003 GPIO Port D
+    GPIOE_Handler,         // 004 GPIO Port E
+    UART0_Handler,         // 005 UART0
+    UART1_Handler,         // 006 UART1
+    SSI0_Handler,          // 007 SSI0
+    I2C0_Handler,          // 008 I2C0
+    PWM0_Fault_Handler,    // 009 PWM0 Fault
+    PWM0_Gen0_Handler,     // 010 PWM0 Generator 0
+    PWM0_Gen1_Handler,     // 011 PWM0 Generator 1
+    PWM0_Gen2_Handler,     // 012 PWM0 Generator 2
+    QEI0_Handler,          // 013 QEI0
+    ADC0_Seq0_Handler,     // 014 ADC0 Sequence 0
+    ADC0_Seq1_Handler,     // 015 ADC0 Sequence 1
+    ADC0_Seq2_Handler,     // 016 ADC0 Sequence 2
+    ADC0_Seq3_Handler,     // 017 ADC0 Sequence 3
+    WDG_Handler,           // 018 Watchdog Timers 0 and 1
+    TIM0A_Handler,         // 019 16/32-Bit Timer 0A
+    TIM0B_Handler,         // 020 16/32-Bit Timer 0B
+    TIM1A_Handler,         // 021 16/32-Bit Timer 1A
+    TIM1B_Handler,         // 022 16/32-Bit Timer 1B
+    TIM2A_Handler,         // 023 16/32-Bit Timer 2A
+    TIM2B_Handler,         // 024 16/32-Bit Timer 2B
+    ANG0_Handler,          // 025 Analog Comparator 0
+    ANG1_Handler,          // 026 Analog Comparator 1
+    ANG2_Handler,          // 027 Analog Comparator 2
+    SysCtl_Handler,        // 028 System Control
+    MemCtl_Handler,        // 029 Flash Memory Control and EEPROM Control
+    GPIOF_Handler,         // 030 GPIO Port F
+    GPIOG_Handler,         // 031 GPIO Port G
+    GPIOH_Handler,         // 032 GPIO Port H
+    UART2_Handler,         // 033 UART2
+    SSI1_Handler,          // 034 SSI1
+    TIM3A_Handler,         // 035 16/32-Bit Timer 3A
+    TIM3B_Handler,         // 036 16/32-Bit Timer 3B
+    I2C1_Handler,          // 037 I2C1
+    QEI1_Handler,          // 038 QEI1
+    CAN0_Handler,          // 039 CAN0
+    CAN1_Handler,          // 040 CAN1
+    0,                     // 041 Reserved
+    0,                     // 042 Reserved
+    Hibernate_Handler,     // 043 Hibernation Module
+    USB_Handler,           // 044 USB
+    PWM0_Gen3_Handler,     // 045 PWM0 Generator 3
+    uDMA_Soft_Handler,     // 046 uDMA Software
+    uDMA_Error_Handler,    // 047 uDMA Error
+    ADC1_Seq0_Handler,     // 048 ADC1 Sequence 0
+    ADC1_Seq1_Handler,     // 049 ADC1 Sequence 1
+    ADC1_Seq2_Handler,     // 050 ADC1 Sequence 2
+    ADC1_Seq3_Handler,     // 051 ADC1 Sequence 3
+    0,                     // 052 Reserved
+    0,                     // 053 Reserved
+    GPIOJ_Handler,         // 054 GPIO Port J
+    GPIOK_Handler,         // 055 GPIO Port K
+    GPIOL_Handler,         // 056 GPIO Port L
+    SSI2_Handler,          // 057 SSI2
+    SSI3_Handler,          // 058 SSI3
+    UART3_Handler,         // 059 UART3
+    UART4_Handler,         // 060 UART4
+    UART5_Handler,         // 061 UART5
+    UART6_Handler,         // 062 UART6
+    UART7_Handler,         // 063 UART7
+    0,                     // 064 Reserved
+    0,                     // 065 Reserved
+    0,                     // 066 Reserved
+    0,                     // 067 Reserved
+    I2C2_Handler,          // 068 I2C2
+    I2C3_Handler,          // 069 I2C3
+    TIM4A_Handler,         // 070 16/32-Bit Timer 4A
+    TIM4B_Handler,         // 071 16/32-Bit Timer 4B
+    0,                     // 072 Reserved
+    0,                     // 073 Reserved
+    0,                     // 074 Reserved
+    0,                     // 075 Reserved
+    0,                     // 076 Reserved
+    0,                     // 077 Reserved
+    0,                     // 078 Reserved
+    0,                     // 079 Reserved
+    0,                     // 080 Reserved
+    0,                     // 081 Reserved
+    0,                     // 082 Reserved
+    0,                     // 083 Reserved
+    0,                     // 084 Reserved
+    0,                     // 085 Reserved
+    0,                     // 086 Reserved
+    0,                     // 087 Reserved
+    0,                     // 088 Reserved
+    0,                     // 089 Reserved
+    0,                     // 090 Reserved
+    0,                     // 091 Reserved
+    0,                     // 092 Reserved
+    TIM5A_Handler,         // 093 16/32-Bit Timer 5A
+    TIM5B_Handler,         // 094 16/32-Bit Timer 5B
+    TIM_WIDE_0A_Handler,   // 095 32/64-Bit Timer 0A
+    TIM_WIDE_0B_Handler,   // 096 32/64-Bit Timer 0B
+    TIM_WIDE_1A_Handler,   // 097 32/64-Bit Timer 1A
+    TIM_WIDE_1B_Handler,   // 098 32/64-Bit Timer 1B
+    TIM_WIDE_2A_Handler,   // 099 32/64-Bit Timer 2A
+    TIM_WIDE_2B_Handler,   // 100 32/64-Bit Timer 2B
+    TIM_WIDE_3A_Handler,   // 101 32/64-Bit Timer 3A
+    TIM_WIDE_3B_Handler,   // 102 32/64-Bit Timer 3B
+    TIM_WIDE_4A_Handler,   // 103 32/64-Bit Timer 4A
+    TIM_WIDE_4B_Handler,   // 104 32/64-Bit Timer 4B
+    TIM_WIDE_5A_Handler,   // 105 32/64-Bit Timer 5A
+    TIM_WIDE_5B_Handler,   // 106 32/64-Bit Timer 5B
+    SysException_Handler,  // 107 System Exception (imprecise)
+    0,                     // 108 Reserved
+    0,                     // 109 Reserved
+    I2C4_Handler,          // 110 I2C4
+    I2C5_Handler,          // 111 I2C5
+    GPIOM_Handler,         // 112 GPIO Port M
+    GPION_Handler,         // 113 GPIO Port N
+    0,                     // 114 Reserved
+    0,                     // 115 Reserved
+    GPIOP0_Handler,        // 116 GPIO Port P (Summary or P0)
+    GPIOP1_Handler,        // 117 GPIO Port P1
+    GPIOP2_Handler,        // 118 GPIO Port P2
+    GPIOP3_Handler,        // 119 GPIO Port P3
+    GPIOP4_Handler,        // 120 GPIO Port P4
+    GPIOP5_Handler,        // 121 GPIO Port P5
+    GPIOP6_Handler,        // 122 GPIO Port P6
+    GPIOP7_Handler,        // 123 GPIO Port P7
+    0,                     // 124 Reserved
+    0,                     // 125 Reserved
+    0,                     // 126 Reserved
+    0,                     // 127 Reserved
+    0,                     // 128 Reserved
+    0,                     // 129 Reserved
+    0,                     // 130 Reserved
+    0,                     // 131 Reserved
+    0,                     // 132 Reserved
+    0,                     // 133 Reserved
+    PWM1_Gen0_Handler,     // 134 PWM1 Generator 0
+    PWM1_Gen1_Handler,     // 135 PWM1 Generator 1
+    PWM1_Gen2_Handler,     // 136 PWM1 Generator 2
+    PWM1_Gen3_Handler,     // 137 PWM1 Generator 3
+    PWM1_Fault_Handler     // 138 PWM1 Fault
+};
