@@ -227,10 +227,4 @@ include_directories(${Tivaware_DIR}/examples/boards/dk-tm4c123g)
 add_library(cfal96x64x16 STATIC ${Tivaware_DIR}/examples/boards/dk-tm4c123g/drivers/cfal96x64x16.c)
 
 add_library(uartstdio STATIC ${Tivaware_DIR}/utils/uartstdio.c)
-
 add_library(ustdlib STATIC ${Tivaware_DIR}/utils/ustdlib.c)
-
-configure_file(${CMAKE_SOURCE_DIR}/cmake/startup.c.in startup.c COPYONLY)
-configure_file(${CMAKE_SOURCE_DIR}/cmake/linker.ld.in linker.ld COPYONLY)
-
-set(LINKER_FLAGS "-T linker.ld")

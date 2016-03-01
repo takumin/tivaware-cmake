@@ -10,6 +10,7 @@ set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 add_executable(${CMAKE_PROJECT_NAME}.elf
   ${CMAKE_SOURCE_DIR}/source/main.c
+  isr_vector.c
   startup.c
 )
 target_link_libraries(${CMAKE_PROJECT_NAME}.elf

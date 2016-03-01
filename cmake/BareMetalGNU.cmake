@@ -16,16 +16,13 @@ else()
   message(FATAL_ERROR "Please set to \${CMAKE_SYSTEM_PROCESSOR} variable.")
 endif()
 
-set(LINKER_FLAGS "${LINKER_FLAGS} -Wl,--start-group -lc -lg -lgcc -lm -lstdc++ -lsupc++ -Wl,--end-group")
+set(LINKER_FLAGS "-Wl,--start-group -lc -lg -lgcc -lm -lstdc++ -lsupc++ -Wl,--end-group")
 set(LINKER_FLAGS "${LINKER_FLAGS} -Wl,--gc-sections -Wl,-Map=sections.map")
 
-set(CMAKE_C_FLAGS "${CPU_FLAGS} -std=c11 -Wall -Wextra -pipe -ffunction-sections -fdata-sections -fstack-usage")
-set(CMAKE_CXX_FLAGS "${CPU_FLAGS} -std=c++14 -Wall -Wextra -pipe -ffunction-sections -fdata-sections -fstack-usage")
+set(CMAKE_C_FLAGS "${CPU_FLAGS} -std=c11 -Wall -Wextra -pipe -ffunction-sections -fdata-sections")
+set(CMAKE_CXX_FLAGS "${CPU_FLAGS} -std=c++14 -Wall -Wextra -pipe -ffunction-sections -fdata-sections")
 set(CMAKE_ASM_FLAGS "${CPU_FLAGS} -x assembler-with-cpp")
 set(CMAKE_EXE_LINKER_FLAGS "${CPU_FLAGS} ${LINKER_FLAGS}")
-set(CMAKE_MODULE_LINKER_FLAGS "${CPU_FLAGS} ${LINKER_FLAGS}")
-set(CMAKE_SHARED_LINKER_FLAGS "${CPU_FLAGS} ${LINKER_FLAGS}")
-set(CMAKE_STATIC_LINKER_FLAGS "${CPU_FLAGS} ${LINKER_FLAGS}")
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" CACHE STRING "C Flags.")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" CACHE STRING "CXX Flags.")
@@ -70,8 +67,13 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
+set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES sections.map)
+
 set(BUILD_SHARED_LIBS OFF)
 
 enable_language(ASM)
 
-set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES sections.map)
+configure_file(${CMAKE_SOURCE_DIR}/cmake/isr_vector.c.in isr_vector.c COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/cmake/startup.c.in startup.c COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/cmake/linker.ld.in linker.ld COPYONLY)
+set(LINKER_FLAGS "-T linker.ld")
